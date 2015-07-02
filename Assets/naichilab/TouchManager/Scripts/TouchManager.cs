@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [RequireComponent (typeof(TouchDetector))]
 [RequireComponent (typeof(DragDetector))]
 [RequireComponent (typeof(FlickDetector))]
-public class TouchManager :MonoBehaviour
+public class TouchManager :SingletonMonoBehaviour<TouchManager>
 {
 		public event EventHandler<CustomInputEventArgs> TouchStart;
 		public event EventHandler<CustomInputEventArgs> TouchEnd;
@@ -44,24 +44,6 @@ public class TouchManager :MonoBehaviour
 						this.FlickStart (this.gameObject, e);
 		}
 
-		#region Singleton
-
-		private static TouchManager instance;
-
-		public static TouchManager Instance {
-				get {
-						if (instance == null) {
-								instance = (TouchManager)FindObjectOfType (typeof(TouchManager));
-
-								if (instance == null) {
-										Debug.LogWarning (typeof(TouchManager) + "is nothing");
-								}
-						}
-						return instance;
-				}
-		}
-
-		#endregion Singleton
 
 		private List<IGestureDetector> Detectors = new List<IGestureDetector> ();
 		private CustomInput lastInput = null;
@@ -153,15 +135,6 @@ public class TouchManager :MonoBehaviour
 						}
 						return input;
 				}
-		}
-
-		private void Awake ()
-		{
-				if (this != Instance) {
-						Destroy (this);
-						return;
-				}
-				DontDestroyOnLoad (this.gameObject);
 		}
 
 		private void Start ()
