@@ -83,7 +83,8 @@ public class TouchListenerSample : MonoBehaviour
 				Debug.Log (text);
 
 
-				this.circle.Speed = (e.MovedDistance / e.ElapsedTime);
+        //this.circle.Speed = (e.MovedDistance / e.ElapsedTime);
+        this.circle.Speed = Vector3.zero;
 
 		}
 }

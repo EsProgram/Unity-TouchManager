@@ -17,9 +17,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         instance = FindObjectOfType<T>();
 
         if(instance == null)
-        {
           Debug.LogWarning(typeof(T) + "is nothing");
-        }
       }
       return instance;
     }
@@ -27,12 +25,11 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
   private void Awake()
   {
-    if(this != Instance)
+    if(!ReferenceEquals(this , Instance))
     {
       Destroy(this);
       return;
     }
     DontDestroyOnLoad(this.gameObject);
   }
-
 }

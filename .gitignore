@@ -4,7 +4,11 @@
 [Oo]bj/
 UnityGenerated/
 ProjectSettings/*.asset
-  
+*.meta
+*.unity
+Assets/UnityVS/
+ProjectSettings/ProjectVersion.txt
+
 # ----[ Visual Studio / MonoDevelop generated ]------- #
   
 ExportedObj/
